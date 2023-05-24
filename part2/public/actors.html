@@ -49,7 +49,7 @@
               <input type="text" id="actor-first-name" placeholder="First/Given Name" />
               <label for="actor-last-name">Last Name</label>
               <input type="text" id="actor-last-name" placeholder="First/Family Name" />
-              <button type="button" class="pure-button pure-button-primary" onclick="loadDoc()">Add</button>
+              <button type="button" class="pure-button pure-button-primary">Add</button>
           </fieldset>
         </form>
       </aside>
@@ -81,7 +81,7 @@
         xhr.send();
       });
 
-      document.getElementById('addActorForm').addEventListener('submit', function(event) {
+      document.getElementsByTagName('button')[0].addEventListener('click', function(event) {
         var firstName = document.getElementById('actor-first-name').value;
         var lastName = document.getElementById('actor-last-name').value;
 
