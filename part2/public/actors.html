@@ -49,7 +49,7 @@
               <input type="text" id="actor-first-name" placeholder="First/Given Name" />
               <label for="actor-last-name">Last Name</label>
               <input type="text" id="actor-last-name" placeholder="First/Family Name" />
-              <button type="button" class="pure-button pure-button-primary">Add</button>
+              <button type="button" class="pure-button pure-button-primary" onclick="loadDoc()">Add</button>
           </fieldset>
         </form>
       </aside>
@@ -57,5 +57,59 @@
     </main>
 
     <footer>&copy; 2023 WDC</footer>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', 'actors.html', true); // Replace with the actual server endpoint
+
+        // Set the response type to JSON
+        xhr.responseType = 'json';
+        xhr.onload = function() {
+          var actorarray=xhr.response;
+          document.getElementsByTagName("tbody")[0].innerHTML='';
+          actorarray.forEach(function(actor){
+            var row = document.createElement('tr');
+            var first = document.createElement('td');
+            var last = document.createElement('td');
+
+            first.textContent = actor.first_name;
+            last.textContent = actor.last_name;
+
+            row.appendChild(first);
+            row.appendChild(last);
+            document.getElementsByTagName("tbody")[0].appendChild(row);
+          });
+        }
+        xhr.send();
+      });
+
+      function loadDoc() {
+        var firstName = document.getElementById('actor-first-name').value;
+        var lastName = document.getElementById('actor-last-name').value;
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('POST', 'actoradd.html', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        var actorData = {
+          firstName: firstName,
+          lastName: lastName
+        };
+
+        var jsonData = JSON.stringify(actorData);
+        xhr.onload = function() {
+          if (xhr.status === 200) {
+            console.log('Actor added successfully');
+            location.reload();
+          } else {
+            console.error('Request failed. Status:', xhr.status);
+          }
+        };
+
+        xhr.send(jsonData);
+      }
+
+    </script>
   </body>
 </html>

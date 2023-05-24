@@ -6,4 +6,38 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+
+router.post('/actors.html', function(req, res, next) {
+  req.pool.getConnection(function(err,connection){
+    if (err) {
+      console.log(err);
+      res.sendStatus(502);
+      return;
+    }
+    let sql = "SELECT last_name, first_name FROM actor;";
+    connection.query(sql, function (cerr, result) {
+      if (cerr) {
+        res.sendStatus(501);
+        return;
+      }
+      res.send(result);
+    });
+  });
+});
+
+router.post('/actoradd.html', function(req, res, next) {
+  req.pool.getConnection(function(err,connection){
+    if (err) {
+      res.sendStatus(500);
+      return;
+    }
+    let sql = "insert into actor (first_name,last_name) values ('"+req.body.firstName+"','"+req.body.lastName+"')";
+    connection.query(sql, function (cerr, result) {
+      if (cerr) {
+        res.sendStatus(500);
+      }
+    });
+    res.redirect('/actors.html');
+  });
+});
 module.exports = router;
