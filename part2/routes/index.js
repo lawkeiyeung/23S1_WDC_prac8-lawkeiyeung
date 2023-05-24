@@ -31,7 +31,7 @@ router.post('/actoradd.html', function(req, res, next) {
       return;
     }
     let sql = "insert into actor (first_name,last_name) values ('"+req.body.firstName+"','"+req.body.lastName+"')";
-    connection.query(sql, function (cerr, result) {
+    connection.query(sql, function (cerr, rows, fields) {
       if (cerr) {
         res.sendStatus(500);
       }
