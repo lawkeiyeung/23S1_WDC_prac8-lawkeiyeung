@@ -60,9 +60,7 @@
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', 'actors.html', true); // Replace with the actual server endpoint
-
-        // Set the response type to JSON
+        xhr.open('POST', 'actors.html', true);
         xhr.responseType = 'json';
         xhr.onload = function() {
           var actorarray=xhr.response;
