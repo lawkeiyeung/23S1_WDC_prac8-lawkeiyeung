@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/actors.html', function(req, res, next) {
-  if(req.body.firstName===""){
+  if(req.body.firstName==""){
     req.pool.getConnection(function(err,connection){
       if (err) {
         res.sendStatus(502);
