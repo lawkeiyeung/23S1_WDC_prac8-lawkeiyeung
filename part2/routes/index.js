@@ -15,12 +15,12 @@ router.post('/actors.html', function(req, res, next) {
       return;
     }
     let sql = "SELECT last_name, first_name FROM actor;";
-    connection.query(sql, function (cerr, result) {
+    connection.query(sql, function(err, rows, fields) {
       if (cerr) {
         res.sendStatus(501);
         return;
       }
-      res.send(result);
+      res.send(rows);
     });
   });
 });
