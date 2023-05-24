@@ -10,12 +10,11 @@ router.get('/', function(req, res, next) {
 router.post('/actors.html', function(req, res, next) {
   req.pool.getConnection(function(err,connection){
     if (err) {
-      console.log(err);
       res.sendStatus(502);
       return;
     }
     let sql = "SELECT last_name, first_name FROM actor;";
-    connection.query(sql, function(err, rows, fields) {
+    connection.query(sql, function(cerr, rows, fields) {
       if (cerr) {
         res.sendStatus(501);
         return;
