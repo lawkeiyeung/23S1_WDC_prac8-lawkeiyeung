@@ -81,13 +81,13 @@
         xhr.send();
       });
 
-      function loadDoc() {
+      document.getElementById('addActorForm').addEventListener('submit', function(event) {
         var firstName = document.getElementById('actor-first-name').value;
         var lastName = document.getElementById('actor-last-name').value;
 
         var xhr = new XMLHttpRequest();
 
-        xhr.open('POST', 'actors.html', true);
+        xhr.open('POST', 'actoradd.html', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
 
         var actorData = {
@@ -106,7 +106,7 @@
         };
 
         xhr.send(jsonData);
-      }
+      });
 
     </script>
   </body>
