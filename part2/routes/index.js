@@ -25,18 +25,19 @@ router.post('/actors.html', function(req, res, next) {
   });
 });
 
-router.get('/actoradd.html', function(req, res, next) {
+router.post('/actoradd.html', function(req, res, next) {
   req.pool.getConnection(function(err,connection){
     if (err) {
       res.sendStatus(500);
       return;
     }
-    let sql = "insert into actor (first_name,last_name) values ('"+req.query.firstName+"','"+req.query.lastName+"')";
+    let sql = "insert into actor (first_name,last_name) values ('"+req.body.firstName+"','"+req.body.lastName+"')";
     connection.query(sql, function (cerr, result) {
       if (cerr) {
         res.sendStatus(500);
       }
     });
+    res.redirect('/actors.html');
   });
 });
 module.exports = router;

@@ -89,7 +89,8 @@
 
         var xhr = new XMLHttpRequest();
 
-        xhr.open('GET', 'actors.html?firstName=' + encodeURIComponent(firstName) + '&lastName=' + encodeURIComponent(lastName), true);
+        xhr.open('POST', 'actoradd.html', true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
 
         var actorData = {
           firstName: firstName,
