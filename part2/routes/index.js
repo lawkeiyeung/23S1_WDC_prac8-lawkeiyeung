@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.post('/actorssss.html', function(req, res, next) {
+router.post('/actors', function(req, res, next) {
   req.pool.getConnection(function(err,connection){
     if (err) {
       res.sendStatus(502);
@@ -24,7 +24,7 @@ router.post('/actorssss.html', function(req, res, next) {
   });
 });
 
-router.post('/actoradd.html', function(req, res, next) {
+router.post('/actoradd', function(req, res, next) {
   req.pool.getConnection(function(err,connection){
     if (err) {
       res.sendStatus(500);
