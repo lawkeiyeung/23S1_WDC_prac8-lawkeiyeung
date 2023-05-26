@@ -36,7 +36,7 @@ router.post('/actoradd', function(req, res, next) {
         res.sendStatus(500);
       }
     });
-    res.redirect('/actors.html');
+    res.send();
   });
 });
 module.exports = router;
