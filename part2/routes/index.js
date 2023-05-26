@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.post('/actors', function(req, res, next) {
+router.get('/actors', function(req, res, next) {
   req.pool.getConnection(function(err,connection){
     if (err) {
       res.sendStatus(502);
