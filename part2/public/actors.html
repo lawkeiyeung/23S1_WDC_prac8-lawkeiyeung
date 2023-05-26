@@ -97,12 +97,6 @@
 
         var jsonData = JSON.stringify(actorData);
         xhr.onload = function() {
-          if (xhr.status === 200) {
-            console.log('Actor added successfully');
-            location.reload();
-          } else {
-            console.error('Request failed. Status:', xhr.status);
-          }
         };
 
         xhr.send(jsonData);
